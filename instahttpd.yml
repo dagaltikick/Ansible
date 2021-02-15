@@ -1,0 +1,17 @@
+---
+- name: install httpd
+  hosts: testx
+  
+  become: yes
+
+
+  tasks:
+    - name: install apache
+      apt : 
+        name : apache2
+        state : latest
+
+    - name: service restart
+      service:
+          name: apache2
+          state: reloaded

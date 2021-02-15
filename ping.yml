@@ -1,0 +1,8 @@
+- host: all
+
+tasks:
+- NAME: testpong
+  net_ping:
+    dest: 1.1.1.1
+    state: absent
+    

@@ -1,0 +1,23 @@
+ hosts: forti
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 443
+  tasks:
+  - name: Configure IPv4 addresses.
+    fortios_firewall_address:
+      vdom:  "root"
+      state: "present"
+      firewall_address:
+        allow_routing: "enable"
+        cache_ttl: "5"
+        color: "6"
+        comment: "Comment."
+        list:
+         -
+            ip: "192.168.1.111/32"
+        name: "default_name_15"

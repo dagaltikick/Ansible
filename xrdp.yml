@@ -1,0 +1,27 @@
+---
+- name: install apache playbook
+  hosts: testx
+  become: yes
+  gather_facts: false
+  vars:
+    rdp_pakages:
+      - xrdp
+      - xfce4
+
+    apache_test: this a test message
+
+  tasks:
+  
+  - name: install xrdp pakg
+    apt:
+      name: "{{item}}"
+      state: present
+    loop: "{{rdp_pakages}}"
+    notify: restart rdp service
+
+  handlers:
+    - name: restart rdp service
+      service:
+        name: xrdp
+        state: restarted
+        enabled: yes
